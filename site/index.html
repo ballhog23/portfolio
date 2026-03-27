@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caleb Pirkle — Web Developer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <a href="#hero" class="nav-logo">CP</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="hero">
+      <h1 class="hero-name" data-text="Caleb Pirkle">Caleb Pirkle</h1>
+      <p class="hero-title">Web Developer</p>
+      <a href="#projects" class="hero-cta">View My Work</a>
+    </section>
+    <section id="about">
+      <p class="section-label reveal">// lore</p>
+      <h2 class="section-title reveal">About</h2>
+      <div id="about-inner">
+        <div class="about-details reveal">
+          <div class="detail-row">
+            <span class="detail-label">Status</span>
+            <span class="detail-value">Open to work<span class="cursor"></span></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Focus</span>
+            <span class="detail-value">Full-stack web development</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">DFW, TEXAS</span>
+          </div>
+        </div>
+        <div class="about-bio reveal">
+          <p>
+            I started out studying computer information systems, but a broken search bar on a class project pulled me
+            down a rabbit hole of web development. The lady told me not to worry about it but I did anyways.
+          </p>
+          <p>
+            When I'm not online, there's a good chance Slipknot is getting jammed or I'm watching a ball game.
+            Go Mavs, Rangers and Stars. Maybe Cowboys too, just depends on the week.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="skills">
+      <p class="section-label reveal">// my loadout</p>
+      <h2 class="section-title reveal">Skills</h2>
+      <div class="skills-grid reveal">
+        <div class="skill-tag">HTML</div>
+        <div class="skill-tag">SCSS/CSS</div>
+        <div class="skill-tag">JavaScript</div>
+        <div class="skill-tag">TypeScript</div>
+        <div class="skill-tag">AWS</div>
+        <div class="skill-tag">Node.js</div>
+        <div class="skill-tag">WordPress</div>
+        <div class="skill-tag">REST APIs</div>
+        <div class="skill-tag">SQL</div>
+        <div class="skill-tag">Git</div>
+        <div class="skill-tag">Responsive Design</div>
+        <div class="skill-tag">Web Performance</div>
+        <div class="skill-tag">Accessibility</div>
+      </div>
+    </section>
+    <section id="projects">
+      <p class="section-label reveal">// shipped it</p>
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card reveal">
+          <p class="project-number">001</p>
+          <h3 class="project-title">Bleed Blue Fantasy Football</h3>
+          <p class="project-desc">
+            Tracks and preserves Sleeper league history with season-by-season matchups, standings, and records, backed
+            by an automated AWS data pipeline and PostgreSQL storage.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">Node/Express</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">AWS</span>
+            <span class="stack-tag">CI/CD</span>
+          </div>
+          <div class="project-links">
+            <a href="https://bleedblue.football/" class="project-link" target="_blank">Live</a>
+            <a href="https://github.com/ballhog23/bbfb" class="project-link" target="_blank">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <p class="project-number">002</p>
+          <h3 class="project-title">First Choice Auto Repair</h3>
+          <p class="project-desc">
+            My first ever production website, built in 2021. No frameworks, nothing to break. Just HTML, CSS, PHP,
+            and JS the way Tim Berners-Lee intended — plus the AWS SDK.
+            Hosted on AWS Lightsail with SES for the contact form.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">AWS</span>
+            <span class="stack-tag">PHP</span>
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Structured Data</span>
+          </div>
+          <div class="project-links">
+            <a href="https://www.firstchoiceautotx.com/" class="project-link" target="_blank">Live</a>
+            <a href="https://github.com/ballhog23/first-choice-auto-repair" class="project-link"
+              target="_blank">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <p class="project-number">003</p>
+          <h3 class="project-title">AI Agent</h3>
+          <p class="project-desc">
+            A CLI AI agent. Runs an agentic loop — plans, calls tools,
+            observes results, repeats. Sandboxed file operations, iteration limits, and a system prompt that makes it
+            behave like a menacing Blood Death Knight. FOR THE HORDE!
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Gemini 2.5 Flash</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/ballhog23/ai-agent" class="project-link" target="_blank">GitHub</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+    <section id="contact">
+      <p class="section-label reveal">// Holler at me</p>
+      <h2 class="section-title reveal">Contact</h2>
+      <p class="contact-intro reveal">
+        I'm actively looking for my next role. If you have an opportunity,
+        a question, or just want to talk shop — <span style="color: var(--red)">reach out</span>.
+      </p>
+      <div class="contact-links reveal">
+        <a href="mailto:caleb.a.pirkle@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+          Email
+        </a>
+        <a href="https://github.com/ballhog23" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+          </svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/caleb-a-pirkle/" target="_blank" rel="noopener" class="contact-link">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </section>
+    <footer>
+      <p>Built with blood, sweat and HTML/CSS/JS <span>🤘</span></p>
+    </footer>
+  </main>
+</body>
+
+</html>

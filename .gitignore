@@ -1,0 +1,10 @@
+.env
+.claude
+node-modules
+infra.md
+cmds.md
+setup.md
+.dockerignore
+Dockerfile
+Caddyfile
+/infra
