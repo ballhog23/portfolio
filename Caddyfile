@@ -1,5 +1,5 @@
 (common_headers) {
-    headers {
+    header {
         -Server
 
         # Clickjacking protection
