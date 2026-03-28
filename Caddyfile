@@ -1,0 +1,39 @@
+(common_headers) {
+    headers {
+        -Server
+
+        # Clickjacking protection
+        X-Frame-Options "DENY"
+
+        # MIME sniffing protection
+        X-Content-Type-Options "nosniff"
+
+        # Referrer control
+        Referrer-Policy "strict-origin-when-cross-origin"
+
+        # Force HTTPS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+        # Disable powerful browser features
+        Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+
+        # Cross-origin isolation
+        Cross-Origin-Opener-Policy "same-origin"
+        Cross-Origin-Resource-Policy "same-origin"
+        Cross-Origin-Embedder-Policy "require-corp"
+
+        Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; object-src 'none';"
+    }
+}
+
+www.calebpirkle.com {
+    import common_headers
+    redir https://calebpirkle.com{uri} permanent
+}
+
+calebpirkle.com {
+    root * /srv
+    file_server
+    import common_headers
+    encode zstd gzip
+}

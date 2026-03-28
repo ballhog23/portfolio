@@ -1,0 +1,9 @@
+.env
+*.env
+.claude
+infra.md
+cmds.md
+setup.md
+CLAUDE.md
+infra/
+node_modules

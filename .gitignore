@@ -1,10 +1,17 @@
 .env
+*.env
 .claude
-node-modules
 infra.md
 cmds.md
 setup.md
-.dockerignore
-Dockerfile
-Caddyfile
-/infra
+CLAUDE.md
+
+# Default CDK stuff
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
