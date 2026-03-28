@@ -3,7 +3,7 @@
 ## Cost Estimate (us-east-1, monthly)
 
 | Service | Detail | Est. Cost |
-|---|---|---|
+|---------|--------|-----------|
 | EC2 t4g.nano | 1 instance, 24/7, on-demand ($0.0042/hr) | ~$3.07 |
 | Elastic IP | Associated with running instance | $3.65 |
 | EBS (gp3) | 8 GB default root volume ($0.08/GB) | ~$0.64 |

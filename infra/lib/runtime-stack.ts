@@ -1,8 +1,9 @@
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
+import * as s3 from "aws-cdk-lib/aws-s3";
 import * as r53 from "aws-cdk-lib/aws-route53";
-import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import { Duration, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 export class RuntimeStack extends Stack {
@@ -12,6 +13,7 @@ export class RuntimeStack extends Stack {
     public readonly HOST_INSTANCE_TAG_NAME = 'calebpirkle-host';
     public readonly ECR_REPOSITORY: ecr.Repository;
     public readonly INSTANCE_ROLE: iam.Role;
+    public readonly S3_ARTIFACT_BUCKET: s3.Bucket;
 
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
@@ -122,7 +124,28 @@ export class RuntimeStack extends Stack {
             ]
         });
 
+        const s3ArtifactBucket = new s3.Bucket(this, 's3ArtifactBucket', {
+            bucketName: 'calebpirkle.com',
+            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+            publicReadAccess: false,
+            objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_ENFORCED,
+            encryption: s3.BucketEncryption.S3_MANAGED,
+            enforceSSL: true,
+            versioned: false,
+            eventBridgeEnabled: false,
+            transferAcceleration: false,
+            removalPolicy: RemovalPolicy.DESTROY,
+            autoDeleteObjects: true,
+            lifecycleRules: [
+                {
+                    expiration: Duration.days(7)
+                }
+            ]
+        });
+        s3ArtifactBucket.grantRead(instanceRole);
+
         this.ECR_REPOSITORY = ecrRepository;
         this.INSTANCE_ROLE = instanceRole;
+        this.S3_ARTIFACT_BUCKET = s3ArtifactBucket;
     }
 }

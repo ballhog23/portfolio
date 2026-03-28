@@ -1,49 +1,29 @@
-import * as s3 from "aws-cdk-lib/aws-s3";
 import * as cb from "aws-cdk-lib/aws-codebuild";
 import * as cp from "aws-cdk-lib/aws-codepipeline";
 import * as cp_actions from "aws-cdk-lib/aws-codepipeline-actions";
-import { Duration, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import path from "node:path";
+import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import type { Repository } from "aws-cdk-lib/aws-ecr";
-import type { IRole } from "aws-cdk-lib/aws-iam";
+import type { Bucket } from "aws-cdk-lib/aws-s3";
 
 // these props are exported from RuntimeStack and wired in bin/infra.ts
 interface PipelineStackProps extends StackProps {
   HOST_INSTANCE_TAG_NAME: string;
-  INSTANCE_ROLE: IRole;
+  S3_ARTIFACT_BUCKET: Bucket;
   ECR_REPOSITORY: Repository;
 }
 
 export class PipelineStack extends Stack {
   constructor(scope: Construct, id: string, props: PipelineStackProps) {
     super(scope, id, props);
-    const instanceRole = props.INSTANCE_ROLE;
     const hostInstanceTagName = props.HOST_INSTANCE_TAG_NAME;
+    const s3ArtifactBucket = props.S3_ARTIFACT_BUCKET;
     const ecrRepository = props.ECR_REPOSITORY;
     const ecrRepositoryURI = ecrRepository.repositoryUri;
 
-    const s3ArtifactBucket = new s3.Bucket(this, 's3ArtifactBucket', {
-      bucketName: 'calebpirkle.com',
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-      publicReadAccess: false,
-      objectOwnership: s3.ObjectOwnership.BUCKET_OWNER_ENFORCED,
-      encryption: s3.BucketEncryption.S3_MANAGED,
-      enforceSSL: true,
-      versioned: false,
-      eventBridgeEnabled: false,
-      transferAcceleration: false,
-      removalPolicy: RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
-      lifecycleRules: [
-        {
-          expiration: Duration.days(7)
-        }
-      ]
-    });
-    s3ArtifactBucket.grantRead(instanceRole);
-
     const codeBuild = new cb.Project(this, 'CodeBuild', {
-      buildSpec: cb.BuildSpec.fromSourceFilename('buildspec.yml'),
+      buildSpec: cb.BuildSpec.fromAsset('../buildspec.yml'),
       environment: {
         buildImage: cb.LinuxArmBuildImage.AMAZON_LINUX_2_STANDARD_3_0,
         computeType: cb.ComputeType.SMALL,
@@ -63,6 +43,7 @@ export class PipelineStack extends Stack {
     const buildOutput = new cp.Artifact();
 
     // make sure github connection arn is set in .env
+    process.loadEnvFile(path.resolve(__dirname, '../../.env'));
     const githubConnectionARN = process.env.GITHUB_CONNECTION_ARN;
     if (!githubConnectionARN)
       throw new Error("You must set the Github connection arn in the env file");

@@ -5,6 +5,7 @@ infra.md
 cmds.md
 setup.md
 CLAUDE.md
+launch.md
 
 # Default CDK stuff
 *.js
@@ -15,3 +16,4 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+cdk.context.json
