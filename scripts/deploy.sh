@@ -11,6 +11,6 @@ docker rm calebpirklesite || true
 docker run --name calebpirklesite -d -p 80:80 -p 443:443 -v caddy_data:/data --restart unless-stopped $ECR_URI:latest
 for i in 1 2 3 4 5; do
   sleep 3
-  curl -f http://localhost && break
+  curl -fsk https://localhost && break
   [ $i -eq 5 ] && exit 1
 done
