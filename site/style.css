@@ -21,8 +21,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: rgba(8, 8, 8, 0.85);
-  backdrop-filter: blur(6px);
+  background: var(--bg);
 }
 
 body {
@@ -101,6 +100,23 @@ nav {
 }
 
 /* ── Hero ── */
+.hero-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-wrap::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch' seed='1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 1;
+  animation: static-shift 0.15s steps(3) infinite;
+}
+
 #hero {
   min-height: 100vh;
   display: flex;
@@ -111,6 +127,24 @@ nav {
   padding: 6rem 2rem 4rem;
   position: relative;
   overflow: visible;
+}
+
+@keyframes static-shift {
+  0% {
+    background-position: 0 0;
+  }
+
+  33% {
+    background-position: -128px -47px;
+  }
+
+  66% {
+    background-position: 73px -191px;
+  }
+
+  100% {
+    background-position: -201px 83px;
+  }
 }
 
 /* Blood drip border */
@@ -126,7 +160,7 @@ nav {
 }
 
 .hero-name {
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(3.125rem, 10vw, 7rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -138,7 +172,8 @@ nav {
     glitch-base 4s infinite steps(1) -2.8s,
     flicker-a 6.7s infinite steps(1) -5.1s,
     flicker-b 2.9s infinite steps(1) -1.9s,
-    shake 5s infinite steps(1) -2.7s;
+    shake 5s infinite steps(1) -2.7s,
+    jitter 3.7s infinite steps(1) -1.3s;
 }
 
 /* Glitch layers */
@@ -254,6 +289,67 @@ nav {
   81.9% {
     transform: translate(0, 0) scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes jitter {
+
+  0%,
+  34%,
+  47%,
+  100% {
+    left: 0;
+    top: 0;
+  }
+
+  35% {
+    left: -3px;
+    top: 1px;
+  }
+
+  36.2% {
+    left: 4px;
+    top: -2px;
+  }
+
+  37.4% {
+    left: -2px;
+    top: 0;
+  }
+
+  38.6% {
+    left: 3px;
+    top: 2px;
+  }
+
+  39.8% {
+    left: -4px;
+    top: -1px;
+  }
+
+  41% {
+    left: 1px;
+    top: -3px;
+  }
+
+  42.2% {
+    left: -4px;
+    top: 2px;
+  }
+
+  43.4% {
+    left: 3px;
+    top: -1px;
+  }
+
+  44.6% {
+    left: -2px;
+    top: 1px;
+  }
+
+  45.8% {
+    left: 0;
+    top: 0;
   }
 }
 
