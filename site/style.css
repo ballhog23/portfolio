@@ -64,7 +64,7 @@ body::after {
 
 nav {
   position: fixed;
-  top: 0;
+  top: env(safe-area-inset-top, 0);
   left: 0;
   right: 0;
   z-index: 100;
