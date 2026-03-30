@@ -33,7 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::before {
+/* body::before {
   content: '';
   position: fixed;
   top: env(safe-area-inset-top, 0);
@@ -60,7 +60,7 @@ body::after {
   pointer-events: none;
   z-index: 9998;
   opacity: 0.4;
-}
+} */
 
 nav {
   position: fixed;
