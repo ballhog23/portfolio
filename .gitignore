@@ -6,6 +6,7 @@ cmds.md
 setup.md
 CLAUDE.md
 launch.md
+pipeline.md
 
 # Default CDK stuff
 *.js

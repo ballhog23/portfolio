@@ -1,6 +1,3 @@
-#!/usr/bin/env node
-import * as path from 'path';
-process.loadEnvFile(path.resolve(__dirname, '../../.env'));
 import * as cdk from 'aws-cdk-lib/core';
 import { PipelineStack } from '../lib/pipeline-stack';
 import { RuntimeStack } from '../lib/runtime-stack';
