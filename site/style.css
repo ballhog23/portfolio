@@ -117,6 +117,10 @@ nav {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: color 0.2s;
+
+  &.active {
+    color: var(--red);
+  }
 }
 
 .nav-links a:hover {
