@@ -634,7 +634,45 @@ section {
   box-shadow: 0 0 14px var(--red-glow);
 }
 
-/* ── Projects ── */
+
+.projects-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 3rem;
+}
+
+.projects-header .section-title {
+  margin-bottom: 0;
+}
+
+
+.projects-header .hero-cta {
+  display: none;
+  width: fit-content;
+  margin-top: 0;
+}
+
+@media (min-width: 576px) {
+  .projects-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .projects-header .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .projects-header .hero-cta svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
