@@ -51,31 +51,30 @@ body::before {
 body::after {
   content: '';
   position: fixed;
-  inset: 0;
-  height: 100%;
-  width: 100%;
+  inset: -300px;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   z-index: 2;
   opacity: 0.4;
   pointer-events: none;
+  will-change: transform;
   animation: static-shift 0.4s steps(1) infinite;
 }
 
 @keyframes static-shift {
   0% {
-    background-position: 0 0;
+    transform: translate3d(0, 0, 0);
   }
 
   33% {
-    background-position: -128px -47px;
+    transform: translate3d(-128px, -47px, 0);
   }
 
   66% {
-    background-position: 73px -191px;
+    transform: translate3d(73px, -191px, 0);
   }
 
   100% {
-    background-position: -201px 83px;
+    transform: translate3d(-201px, 83px, 0);
   }
 }
 
@@ -165,8 +164,8 @@ nav {
     glitch-base 4s infinite steps(1) -2.8s,
     flicker-a 6.7s infinite steps(1) -5.1s,
     flicker-b 2.9s infinite steps(1) -1.9s,
-    shake 5s infinite steps(1) -2.7s,
-    jitter 3.7s infinite steps(1) -1.3s;
+    shake 5s infinite steps(1) -1.75s,
+    jitter 3.7s infinite steps(1) 2.5s;
 }
 
 /* Glitch layers */
@@ -291,58 +290,58 @@ nav {
   34%,
   47%,
   100% {
-    left: 0;
-    top: 0;
+    translate: 0 0;
+    opacity: 1;
   }
 
   35% {
-    left: -3px;
-    top: 1px;
+    translate: -3px 1px;
+    opacity: 0.3;
   }
 
   36.2% {
-    left: 4px;
-    top: -2px;
+    translate: 4px -2px;
+    opacity: 1;
   }
 
   37.4% {
-    left: -2px;
-    top: 0;
+    translate: -2px 0;
+    opacity: 0;
   }
 
   38.6% {
-    left: 3px;
-    top: 2px;
+    translate: 3px 2px;
+    opacity: 1;
   }
 
   39.8% {
-    left: -4px;
-    top: -1px;
+    translate: -4px -1px;
+    opacity: 0.5;
   }
 
   41% {
-    left: 1px;
-    top: -3px;
+    translate: 1px -3px;
+    opacity: 0;
   }
 
   42.2% {
-    left: -4px;
-    top: 2px;
+    translate: -4px 2px;
+    opacity: 1;
   }
 
   43.4% {
-    left: 3px;
-    top: -1px;
+    translate: 3px -1px;
+    opacity: 0.2;
   }
 
   44.6% {
-    left: -2px;
-    top: 1px;
+    translate: -2px 1px;
+    opacity: 1;
   }
 
   45.8% {
-    left: 0;
-    top: 0;
+    translate: 0 0;
+    opacity: 1;
   }
 }
 
