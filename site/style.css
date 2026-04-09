@@ -879,14 +879,6 @@ footer {
 
 /* ── Responsive ── */
 @media (max-width: 680px) {
-  nav {
-    padding: 0.9rem 1.2rem;
-  }
-
-  .nav-links {
-    gap: 1.2rem;
-  }
-
   .projects-grid {
     grid-template-columns: 1fr;
   }
@@ -897,6 +889,14 @@ footer {
 }
 
 @media (max-width: 576px) {
+  nav {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
   .about-details {
     float: none;
     margin-left: 0;
@@ -905,11 +905,5 @@ footer {
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
     margin-top: 1.5rem;
-  }
-}
-
-@media (max-width: 420px) {
-  .nav-links {
-    display: none;
   }
 }
