@@ -45,7 +45,7 @@ export class RuntimeStack extends Stack {
             allowAllIpv6Outbound: false,
             allowAllOutbound: true,
             disableInlineRules: false,
-            // no inbound rules by default
+            // no inbound rules by default, we open tcp 80/443 manually below, also udp 443 for QUIC HTTP/3 
         });
 
         const instanceRole = new iam.Role(this, 'InstanceRole', {
@@ -79,12 +79,17 @@ export class RuntimeStack extends Stack {
             userData,
         });
 
-        // restrict traffic to 80 and 443 on instance, this updates the security group
+        // restrict traffic to TCP 80 and 443 on instance, this updates the security group
         this.inboundTrafficPorts.forEach(
             port => hostInstance.connections.allowFrom(
                 ec2.Peer.anyIpv4(), ec2.Port.tcp(port),
                 'Allow incoming www http/s traffic to calebpirkle.com instance'
             )
+        );
+
+        hostInstance.connections.allowFrom(
+            ec2.Peer.anyIpv4(), ec2.Port.udp(this.httpsPort),
+            'Allow incoming www https traffic via UDP calebpirkle.com instance for QUIC HTTP/3'
         );
 
         const eip = new ec2.CfnEIP(this, 'ElasticIp', {

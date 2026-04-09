@@ -8,7 +8,14 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 docker pull $ECR_URI:latest
 docker stop calebpirklesite || true
 docker rm calebpirklesite || true
-docker run --name calebpirklesite -d -p 80:80 -p 443:443 -v caddy_data:/data --restart unless-stopped $ECR_URI:latest
+docker run --name calebpirklesite -d \
+  -p 80:80 \
+  -p 443:443 \
+  -p 443:443/udp \
+  -v caddy_data:/data \
+  --restart unless-stopped \
+  $ECR_URI:latest
+
 if ! docker inspect --format='{{.State.Running}}' calebpirklesite 2>/dev/null | grep -q true; then
     echo "Container failed to start"
     docker logs calebpirklesite
