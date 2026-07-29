@@ -107,6 +107,7 @@
             <span class="stack-tag">PostgreSQL</span>
             <span class="stack-tag">IaC&mdash;AWS CDK</span>
             <span class="stack-tag">CI/CD</span>
+            <span class="stack-tag">3-Tier Web Architecture</span>
           </div>
           <div class="project-links">
             <a href="https://bleedblue.football/" class="project-link" target="_blank">Live</a>
@@ -129,9 +130,9 @@
             <span class="stack-tag">AWS Lambda/Node</span>
             <span class="stack-tag">API Gateway</span>
             <span class="stack-tag">Stripe API</span>
-            <span class="stack-tag">S3</span>
-            <span class="stack-tag">CloudFront</span>
+            <span class="stack-tag">CloudFront + S3</span>
             <span class="stack-tag">Simple Email Service</span>
+            <span class="stack-tag">WAF</span>
           </div>
           <div class="project-links">
             <a href="https://thecookietinbakery.com/" class="project-link" target="_blank">Live</a>
@@ -174,7 +175,8 @@
             <span class="stack-tag">CloudFront + S3</span>
             <span class="stack-tag">API Gateway</span>
             <span class="stack-tag">Lambda</span>
-            <span class="stack-tag">Simple Email Service</span>
+            <span class="stack-tag">SES</span>
+            <span class="stack-tag">WAF</span>
           </div>
           <div class="project-links">
             <a href="https://www.firstchoiceautotx.com/" class="project-link" target="_blank">Live</a>
@@ -222,6 +224,31 @@
           </div>
         </article>
 
+        <article class="project-card reveal">
+          <p class="project-number">0111</p>
+          <h3 class="project-title">Hour House</h3>
+          <p class="project-desc">
+            A website for a local A.A. group. These folks do fantastic work and I wanted to show them some appreciation
+            for sharing their experience, strength and hope. The idea is to operate at the lowest amount as possible and
+            that's what they got! They want to have a contact form and it's built out, but they have to approve it
+            through their Group Conscious first. The infra is laid out for them already: POST request will go through
+            API Gateway and be routed to a lambda function which then upon successful server-side validation will
+            deliver the contents of the form via SES.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">CloudFront + S3</span>
+            <span class="stack-tag">API Gateway</span>
+            <span class="stack-tag">Lambda</span>
+            <span class="stack-tag">WAF</span>
+            <span class="stack-tag">SES</span>
+            <span class="stack-tag">CI/CD</span>
+            <span class="stack-tag">Astro + TypeScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/ballhog23/ai-agent" class="project-link" target="_blank">GitHub</a>
+          </div>
+        </article>
+
       </div>
     </section>
     <section id="contact">
@@ -256,7 +283,7 @@
       </div>
     </section>
     <footer>
-      <p>Built with blood, sweat and HTML/CSS/JS <span>🤘</span></p>
+      <p>🤘</p>
     </footer>
   </main>
 </body>
