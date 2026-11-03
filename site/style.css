@@ -9,7 +9,7 @@
 :root {
   --bg: #171717;
   --surface: #111111;
-  --border: #1e1e1e;
+  --border: var(--dim);
   --red: #cc0000;
   --red-glow: #ff000066;
   --green: #00ff41;
@@ -467,8 +467,8 @@ section {
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
 
@@ -476,6 +476,7 @@ section {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
+  border-left-color: transparent;
   padding: 1.5rem;
   position: relative;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -497,7 +498,7 @@ section {
 }
 
 .project-card:hover {
-  border-color: #333;
+  border-color: var(--red) var(--red) var(--red) transparent;
 }
 
 .project-card:hover::before {
@@ -672,10 +673,6 @@ footer {
 
 /* ── Responsive ── */
 @media (max-width: 680px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
   section {
     padding: 4rem 1.2rem;
   }
