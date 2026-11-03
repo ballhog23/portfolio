@@ -161,7 +161,7 @@ nav {
   color: var(--white);
   position: relative;
   cursor: default;
-  animation: glitch-flicker 7s infinite steps(1);
+  animation: glitch-flicker 7s infinite steps(1) -5.8s;
 }
 
 /* Both slices inherit the same animation clock from the name. */
