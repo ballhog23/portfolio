@@ -91,7 +91,6 @@ nav {
   align-items: center;
   padding: 1rem 2rem;
   background: rgba(8, 8, 8, 0.85);
-  border-bottom: 1px solid var(--border);
   backdrop-filter: blur(6px);
 }
 
