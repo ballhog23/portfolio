@@ -25,7 +25,7 @@ html {
 
 body {
   padding-top: 0;
-  background: radial-gradient(ellipse at 50% 35%, #252525, var(--bg) 75%);
+  background: radial-gradient(ellipse at 50% 35%, #252525, var(--bg) 70%);
   background-attachment: fixed;
   color: var(--text);
   font-family: 'Courier New', Courier, monospace;
