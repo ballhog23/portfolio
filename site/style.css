@@ -189,6 +189,7 @@ nav {
 }
 
 @keyframes glitch-flicker {
+
   0%,
   89%,
   100% {
@@ -202,6 +203,7 @@ nav {
     --gb-b: 100%;
     color: var(--white);
   }
+
   90% {
     --ga-o: 0.9;
     --ga-x: -4px;
@@ -209,51 +211,64 @@ nav {
     --ga-b: 60%;
     color: transparent;
   }
+
   90.5% {
     color: var(--white);
   }
+
   90.9% {
     color: transparent;
   }
+
   91% {
     --gb-o: 0.7;
     --gb-x: 4px;
     --gb-t: 48%;
     --gb-b: 22%;
   }
+
   91.6% {
     color: var(--white);
   }
+
   92% {
     --ga-x: 3px;
     --ga-t: 62%;
     --ga-b: 6%;
   }
+
   92.8% {
     color: transparent;
   }
+
   93% {
     --gb-x: -3px;
     --gb-t: 4%;
     --gb-b: 74%;
   }
+
   93.1% {
     color: var(--white);
   }
+
   94% {
     --ga-x: -2px;
     --ga-t: 34%;
     --ga-b: 40%;
   }
+
   94.6% {
     color: transparent;
   }
+
   95% {
     --ga-o: 0;
   }
+
   95.6% {
     color: var(--white);
   }
+
   96% {
     --gb-o: 0;
   }
