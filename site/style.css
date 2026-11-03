@@ -475,8 +475,7 @@ section {
 .project-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border);
-  border-left-color: transparent;
+  border: 1px solid transparent;
   padding: 1.5rem;
   position: relative;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -495,10 +494,6 @@ section {
   transform-origin: top;
   transition: transform 0.3s;
   will-change: transform;
-}
-
-.project-card:hover {
-  border-color: var(--red) var(--red) var(--red) transparent;
 }
 
 .project-card:hover::before {
