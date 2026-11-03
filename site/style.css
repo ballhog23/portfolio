@@ -7,7 +7,7 @@
 }
 
 :root {
-  --bg: #080808;
+  --bg: #171717;
   --surface: #111111;
   --border: #1e1e1e;
   --red: #cc0000;
@@ -25,7 +25,8 @@ html {
 
 body {
   padding-top: 0;
-  background: var(--bg);
+  background: radial-gradient(ellipse at 50% 35%, #252525, var(--bg) 75%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: 'Courier New', Courier, monospace;
   overflow-x: hidden;
@@ -41,11 +42,11 @@ body::before {
   width: 100%;
   background: repeating-linear-gradient(0deg,
       transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.08) 2px,
-      rgba(0, 0, 0, 0.08) 4px);
+      transparent 4px,
+      rgba(0, 0, 0, 0.16) 4px,
+      rgba(0, 0, 0, 0.16) 6px);
   pointer-events: none;
-  z-index: 1;
+  z-index: 6;
 }
 
 body::after {
@@ -160,334 +161,112 @@ nav {
   color: var(--white);
   position: relative;
   cursor: default;
-  animation:
-    glitch-base 4s infinite steps(1) -2.8s,
-    flicker-a 6.7s infinite steps(1) -5.1s,
-    flicker-b 2.9s infinite steps(1) -1.9s,
-    shake 5s infinite steps(1) -1.75s,
-    jitter 3.7s infinite steps(1) 2.5s;
+  animation: glitch-flicker 7s infinite steps(1);
 }
 
-/* Glitch layers */
+/* Both slices inherit the same animation clock from the name. */
 .hero-name::before,
 .hero-name::after {
-  content: attr(data-text);
+  content: attr(data-text) / "";
   position: absolute;
   inset: 0;
   font: inherit;
+  pointer-events: none;
 }
 
 .hero-name::before {
   color: var(--red);
-  animation: glitch-1 4s infinite steps(1);
-  clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+  opacity: var(--ga-o);
+  transform: translateX(var(--ga-x));
+  clip-path: inset(var(--ga-t) 0 var(--ga-b) 0);
 }
 
 .hero-name::after {
   color: var(--green);
-  animation: glitch-2 4s infinite steps(1);
-  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+  opacity: var(--gb-o);
+  transform: translateX(var(--gb-x));
+  clip-path: inset(var(--gb-t) 0 var(--gb-b) 0);
 }
 
-@keyframes shake {
-
+@keyframes glitch-flicker {
   0%,
-  74%,
+  89%,
   100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
+    --ga-o: 0;
+    --ga-x: 0px;
+    --ga-t: 0%;
+    --ga-b: 100%;
+    --gb-o: 0;
+    --gb-x: 0px;
+    --gb-t: 0%;
+    --gb-b: 100%;
+    color: var(--white);
   }
-
-  75% {
-    transform: translate(0, 0) scale(1.06);
-    opacity: 1;
+  90% {
+    --ga-o: 0.9;
+    --ga-x: -4px;
+    --ga-t: 10%;
+    --ga-b: 60%;
+    color: transparent;
   }
-
-  76% {
-    transform: translate(0, 0) scale(1.1);
-    opacity: 1;
+  90.5% {
+    color: var(--white);
   }
-
-  77% {
-    transform: translate(0, 0) scale(1.13);
-    opacity: 1;
+  90.9% {
+    color: transparent;
   }
-
-  78% {
-    transform: translate(0, 0) scale(1.13);
-    opacity: 1;
-  }
-
-  78.3% {
-    transform: translate(-5px, 2px) scale(1.13);
-    opacity: 0;
-  }
-
-  78.6% {
-    transform: translate(6px, -3px) scale(1.13);
-    opacity: 1;
-  }
-
-  78.9% {
-    transform: translate(-4px, 4px) scale(1.13);
-    opacity: 0;
-  }
-
-  79.2% {
-    transform: translate(7px, -1px) scale(1.13);
-    opacity: 1;
-  }
-
-  79.5% {
-    transform: translate(-6px, 3px) scale(1.13);
-    opacity: 0.2;
-  }
-
-  79.8% {
-    transform: translate(4px, -4px) scale(1.13);
-    opacity: 1;
-  }
-
-  80.1% {
-    transform: translate(-3px, 2px) scale(1.13);
-    opacity: 0;
-  }
-
-  80.4% {
-    transform: translate(5px, -2px) scale(1.13);
-    opacity: 1;
-  }
-
-  80.7% {
-    transform: translate(-7px, 1px) scale(1.13);
-    opacity: 0.15;
-  }
-
-  81.0% {
-    transform: translate(3px, 3px) scale(1.13);
-    opacity: 1;
-  }
-
-  81.3% {
-    transform: translate(-4px, -3px) scale(1.13);
-    opacity: 0;
-  }
-
-  81.6% {
-    transform: translate(6px, 2px) scale(1.13);
-    opacity: 1;
-  }
-
-  81.9% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes jitter {
-
-  0%,
-  34%,
-  47%,
-  100% {
-    translate: 0 0;
-    opacity: 1;
-  }
-
-  35% {
-    translate: -3px 1px;
-    opacity: 0.3;
-  }
-
-  36.2% {
-    translate: 4px -2px;
-    opacity: 1;
-  }
-
-  37.4% {
-    translate: -2px 0;
-    opacity: 0;
-  }
-
-  38.6% {
-    translate: 3px 2px;
-    opacity: 1;
-  }
-
-  39.8% {
-    translate: -4px -1px;
-    opacity: 0.5;
-  }
-
-  41% {
-    translate: 1px -3px;
-    opacity: 0;
-  }
-
-  42.2% {
-    translate: -4px 2px;
-    opacity: 1;
-  }
-
-  43.4% {
-    translate: 3px -1px;
-    opacity: 0.2;
-  }
-
-  44.6% {
-    translate: -2px 1px;
-    opacity: 1;
-  }
-
-  45.8% {
-    translate: 0 0;
-    opacity: 1;
-  }
-}
-
-@keyframes flicker-a {
-
-  0%,
-  88%,
-  100% {
-    opacity: 1;
-  }
-
-  88.2% {
-    opacity: 0;
-  }
-
-  88.5% {
-    opacity: 1;
-  }
-
-  88.8% {
-    opacity: 0.15;
-  }
-
-  89.1% {
-    opacity: 1;
-  }
-
-  89.3% {
-    opacity: 0;
-  }
-
-  89.6% {
-    opacity: 1;
-  }
-}
-
-@keyframes flicker-b {
-
-  0%,
-  93%,
-  100% {
-    opacity: 1;
-  }
-
-  93.4% {
-    opacity: 0;
-  }
-
-  93.8% {
-    opacity: 1;
-  }
-}
-
-@keyframes glitch-base {
-
-  0%,
-  90%,
-  100% {
-    opacity: 1;
-  }
-
   91% {
-    opacity: 0;
+    --gb-o: 0.7;
+    --gb-x: 4px;
+    --gb-t: 48%;
+    --gb-b: 22%;
   }
-
+  91.6% {
+    color: var(--white);
+  }
   92% {
-    opacity: 1;
+    --ga-x: 3px;
+    --ga-t: 62%;
+    --ga-b: 6%;
   }
-
+  92.8% {
+    color: transparent;
+  }
   93% {
-    opacity: 0.2;
+    --gb-x: -3px;
+    --gb-t: 4%;
+    --gb-b: 74%;
   }
-
+  93.1% {
+    color: var(--white);
+  }
   94% {
-    opacity: 1;
+    --ga-x: -2px;
+    --ga-t: 34%;
+    --ga-b: 40%;
   }
-
+  94.6% {
+    color: transparent;
+  }
   95% {
-    opacity: 0;
+    --ga-o: 0;
   }
-
+  95.6% {
+    color: var(--white);
+  }
   96% {
-    opacity: 1;
-  }
-
-  97% {
-    opacity: 0;
-  }
-
-  98% {
-    opacity: 1;
+    --gb-o: 0;
   }
 }
 
-@keyframes glitch-1 {
-
-  0%,
-  90%,
-  100% {
-    transform: translate(0, 0);
-    opacity: 0;
+@media (prefers-reduced-motion: reduce) {
+  .hero-name {
+    animation: none;
   }
 
-  91% {
-    transform: translate(-4px, -2px);
-    opacity: 1;
-  }
-
-  93% {
-    transform: translate(4px, 1px);
-    opacity: 1;
-  }
-
-  95% {
-    transform: translate(-2px, 3px);
-    opacity: 1;
-  }
-
-  97% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-}
-
-@keyframes glitch-2 {
-
-  0%,
-  88%,
-  100% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-
-  89% {
-    transform: translate(3px, 2px);
-    opacity: 1;
-  }
-
-  92% {
-    transform: translate(-3px, -1px);
-    opacity: 1;
-  }
-
-  94% {
-    transform: translate(0, 0);
-    opacity: 0;
+  .hero-name::before,
+  .hero-name::after {
+    content: none;
   }
 }
 
