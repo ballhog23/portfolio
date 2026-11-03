@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/alpine:3.24.3
+FROM public.ecr.aws/docker/library/caddy:latest
 
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY site/ /srv/

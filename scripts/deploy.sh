@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+container_diagnostics() {
+    docker inspect --format='Status={{.State.Status}} ExitCode={{.State.ExitCode}} Error={{.State.Error}} OOMKilled={{.State.OOMKilled}} Restarts={{.RestartCount}} Path={{.Path}} Args={{json .Args}}' calebpirklesite || true
+    docker logs --tail 100 calebpirklesite || true
+}
+
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 ECR_URI=$(aws ecr describe-repositories --repository-name calebpirkle/site --query 'repositories[0].repositoryUri' --output text)
 
@@ -18,7 +23,7 @@ docker run --name calebpirklesite -d \
 
 if ! docker inspect --format='{{.State.Running}}' calebpirklesite 2>/dev/null | grep -q true; then
     echo "Container failed to start"
-    docker logs calebpirklesite
+    container_diagnostics
     exit 1
 fi
 
@@ -32,5 +37,5 @@ for i in $(seq 1 10); do
 done
 
 echo "Health check failed — container did not respond in time"
-docker logs calebpirklesite
+container_diagnostics
 exit 1
