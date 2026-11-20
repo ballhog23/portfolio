@@ -22,24 +22,29 @@ function setActive(id) {
     ?.classList.add('active');
 }
 
+// The observer sends only the sections that changed, so keep every section that is inside the observer window.
+const visible = new Set();
+
 const navObserver = new IntersectionObserver(
   entries => {
-    // get only sections currently inside the observer window
-    const visible = entries.filter(entry => entry.isIntersecting);
-    if (!visible.length) return;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) visible.add(entry.target);
+      else visible.delete(entry.target);
+    });
+    if (!visible.size) return;
 
     // choose the section closest to top of viewport
-    const topSection = visible.reduce((closest, entry) => {
-      const currTop = Math.abs(entry.target.getBoundingClientRect().top);
-      const prevTop = Math.abs(closest.target.getBoundingClientRect().top);
-      return currTop < prevTop ? entry : closest;
+    const topSection = [...visible].reduce((closest, section) => {
+      const currTop = Math.abs(section.getBoundingClientRect().top);
+      const prevTop = Math.abs(closest.getBoundingClientRect().top);
+      return currTop < prevTop ? section : closest;
     });
 
-    setActive(topSection.target.id);
+    setActive(topSection.id);
   },
   {
     rootMargin: '-10% 0px -40% 0px',
-    threshold: 0.25
+    threshold: 0
   }
 );
 
